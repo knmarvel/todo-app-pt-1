@@ -95,7 +95,10 @@ function App() {
       <footer className="footer">
         {/* <!-- This should be `0 items left` by default --> */}
         <span className="todo-count">
-          <strong>0</strong> item(s) left
+            <strong>
+              {Object.values(todos).filter(todo =>
+              !todo.completed).length}
+            </strong> item(s) left
         </span>
         <ul className="filters">
           <li>
@@ -122,7 +125,12 @@ function App() {
             </NavLink>
           </li>
         </ul>
-        <button className="clear-completed">Clear completed</button>
+        <button 
+          className="clear-completed"
+          onClick={() => handleClearCompletedToDos()}
+          >
+          Clear completed
+        </button>
       </footer>
     </section>
   );
