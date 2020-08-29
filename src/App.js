@@ -37,6 +37,16 @@ function App() {
     setTodos(newTodos)
   }
 
+  const handleClearCompletedToDos = () => {
+    const newTodos = {...todos}
+    for(const todo in newTodos){
+      if(newTodos[todo].completed){
+        delete newTodos[todo]
+      }
+    }
+    setTodos(newTodos)
+  }
+
   return (
     <section className="todoapp">
       <header className="header">
@@ -58,7 +68,12 @@ function App() {
         <span className="todo-count">
           <strong>0</strong> item(s) left
         </span>
-        <button className="clear-completed">Clear completed</button>
+        <button 
+          className="clear-completed"
+          onClick={() => handleClearCompletedToDos()}
+        >
+            Clear completed
+        </button>
       </footer>
     </section>
   );
