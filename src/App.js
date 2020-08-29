@@ -31,7 +31,11 @@ function App() {
     setTodos(newTodos)
   }
 
-  
+  const handleDeleteTodo = (id) => {
+    const newTodos = {...todos}
+    delete newTodos[id]
+    setTodos(newTodos)
+  }
 
   return (
     <section className="todoapp">
@@ -48,6 +52,7 @@ function App() {
       <TodoList 
         todos={Object.values(todos)} 
         handleToggle={handleToggle}
+        handleDeleteTodo={handleDeleteTodo}
       />
       <footer className="footer">
         <span className="todo-count">
@@ -71,7 +76,10 @@ function TodoItem(props) {
           onChange={() => props.handleToggle(props.id)}
         />
         <label>{props.title}</label>
-        <button className="destroy" />
+        <button 
+          className="destroy"
+          onClick={() => props.handleDeleteTodo(props.id)}
+           />
       </div>
     </li>
   );
@@ -89,6 +97,7 @@ function TodoList(props) {
             completed={todo.completed} 
             id={todo.id}
             handleToggle={props.handleToggle}
+            handleDeleteTodo={props.handleDeleteTodo}
             key={todo.id}
           />
         ))}
