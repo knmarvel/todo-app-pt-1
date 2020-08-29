@@ -99,13 +99,27 @@ function App() {
         </span>
         <ul className="filters">
           <li>
-            <a href="/">All</a>
+            <NavLink 
+              exact to="/"
+              activeClassName="selected">
+                All
+            </NavLink>
           </li>
           <li>
-            <a href="/active">Active</a>
+            <NavLink 
+              to="/active"
+              activeClassName="selected"
+              >
+                Active
+            </NavLink>
           </li>
           <li>
-            <a href="/completed">Completed</a>
+            <NavLink 
+              to="/completed"
+              activeClassName="selected"
+              >
+                Completed
+            </NavLink>
           </li>
         </ul>
         <button className="clear-completed">Clear completed</button>
