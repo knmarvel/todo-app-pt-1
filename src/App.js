@@ -25,6 +25,14 @@ function App() {
     }
   }
 
+  const handleToggle = (id) => {
+    const newTodos = {...todos}
+    newTodos[id].completed = !newTodos[id].completed
+    setTodos(newTodos)
+  }
+
+  
+
   return (
     <section className="todoapp">
       <header className="header">
@@ -37,7 +45,10 @@ function App() {
           placeholder="What needs to be done?" 
           autoFocus />
       </header>
-      <TodoList todos={Object.values(todos)} />
+      <TodoList 
+        todos={Object.values(todos)} 
+        handleToggle={handleToggle}
+      />
       <footer className="footer">
         <span className="todo-count">
           <strong>0</strong> item(s) left
@@ -53,7 +64,12 @@ function TodoItem(props) {
   return (
     <li className={props.completed ? "completed" : ""}>
       <div className="view">
-        <input className="toggle" type="checkbox" checked={props.completed} />
+        <input 
+          className="toggle" 
+          type="checkbox" 
+          checked={props.completed} 
+          onChange={() => props.handleToggle(props.id)}
+        />
         <label>{props.title}</label>
         <button className="destroy" />
       </div>
@@ -68,7 +84,13 @@ function TodoList(props) {
     <section className="main">
       <ul className="todo-list">
         {props.todos.map((todo) => (
-          <TodoItem title={todo.title} completed={todo.completed} />
+          <TodoItem 
+            title={todo.title} 
+            completed={todo.completed} 
+            id={todo.id}
+            handleToggle={props.handleToggle}
+            key={todo.id}
+          />
         ))}
       </ul>
     </section>
