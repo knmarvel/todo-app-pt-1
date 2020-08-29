@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { todos as todosList } from "./todos";
 import { v4 as uuid } from "uuid"
+import TodoList from "./components/TodoList/TodoList"
 
 function App() {
 
@@ -75,48 +76,6 @@ function App() {
             Clear completed
         </button>
       </footer>
-    </section>
-  );
-}
-
-function TodoItem(props) {
-
-  return (
-    <li className={props.completed ? "completed" : ""}>
-      <div className="view">
-        <input 
-          className="toggle" 
-          type="checkbox" 
-          checked={props.completed} 
-          onChange={() => props.handleToggle(props.id)}
-        />
-        <label>{props.title}</label>
-        <button 
-          className="destroy"
-          onClick={() => props.handleDeleteTodo(props.id)}
-           />
-      </div>
-    </li>
-  );
-
-}
-
-function TodoList(props) {
-
-  return (
-    <section className="main">
-      <ul className="todo-list">
-        {props.todos.map((todo) => (
-          <TodoItem 
-            title={todo.title} 
-            completed={todo.completed} 
-            id={todo.id}
-            handleToggle={props.handleToggle}
-            handleDeleteTodo={props.handleDeleteTodo}
-            key={todo.id}
-          />
-        ))}
-      </ul>
     </section>
   );
 }
